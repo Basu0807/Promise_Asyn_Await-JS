@@ -8,11 +8,11 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <style>
-    body{
-        background-color: aqua;
+    body {
+      background-color: aqua;
     }
-    h2{
-        color: crimson;
+    h2 {
+      color: crimson;
     }
   </style>
   <body>
@@ -80,7 +80,8 @@ Output:
             }, 1000);
         </pre
     >
-    <pre> Output:
+    <pre>
+ Output:
             1
             2
             3
@@ -129,6 +130,33 @@ Output:
           
           printNumbersWithDelay();
     </pre>
+
+    <pre>
+output
+        1
+        2
+        3
+        4
+        5
+        6
+        7
+    </pre>
+    <p>
+      In this code, we have a function called printNumbersWithDelay that uses
+      promises and setTimeout to achieve the desired behavior. Inside the
+      printNumbersWithDelay function, we define another function called
+      printNumber. This function returns a promise. Inside the promise, we use
+      setTimeout to delay the execution of the code inside the arrow function.
+      The delay is determined by multiplying the number variable by 1000
+      milliseconds (1 second, 2 seconds, 3 seconds, and so on). After the delay,
+      we log the number to the console and resolve the promise.
+    </p>
+    <p>
+      setTimeout function is used here to introduce delays in the execution for
+      illustrative purposes. In a real-world scenario, if you need to perform
+      some asynchronous operation instead of just printing the numbers, you can
+      replace the console.log statement inside the printNumber function
+    </p>
 
     <h2>
       Q-4 "Create a promise function accepting an argument, if yes is passed to

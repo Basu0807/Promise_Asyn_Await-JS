@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <style>
+    body{
+        background-color: aqua;
+    }
+    h2{
+        color: crimson;
+    }
+  </style>
+  <body>
+    <h2>
+      Q-1 Write one example explaining how you can write a callback function.
+    </h2>
+    <pre>
+        function totalsum(num1, num2){
+            return num1+num2
+        }
+        
+        function fatherAge(boy1,boy2,sum){
+            console.log(`The sum of ${boy1}'s age and ${boy2}'s age is ${sum}`)
+        }
+        
+        fatherAge("Rahul","John", totalsum(20,30));
+    </pre>
+
+    <pre>
+Output:
+        The sum of Rahul age and John age is 50
+    </pre>
+
+    <p>
+      In this code we created two funtions and then we call the funtion inside
+      the funtion. This calls callback function
+    </p>
+
+    <h2>
+      Q-2 "Write a callback function to print numbers from 1 to 7, in which 1
+      should be printed after 1 sec, 2 should be printed after 2 sec, 3 should
+      be printed after 3 sec, and so on. Explain callback hell. Numbers 1 2 3 4
+      5 6 7"
+    </h2>
+    <p>
+      Callback hell is a phenomenon that happens when multiple callbacks are
+      nested on top of each other.
+    </p>
+    <p>
+      In this code the functions are depend upon other function from top to
+      bottom respectively. The first setTimeout function will take 1sec to
+      execute then it allow to excute the second setTimeout function and so on.
+    </p>
+    <pre>
+            setTimeout(() => {
+                console.log("1")
+                setTimeout(() => {
+                    console.log("2") 
+                    setTimeout(() => {
+                        console.log("3")
+                        setTimeout(() => {
+                            console.log("4")
+                            setTimeout(() => {
+                                console.log("5")
+                                setTimeout(() => {
+                                    console.log("6")
+                                    setTimeout(() => {
+                                        console.log("7")
+                                    }, 7000);
+                                }, 6000);
+                            }, 5000);
+                        }, 4000);
+                    }, 3000);
+                }, 2000);
+            }, 1000);
+        </pre
+    >
+    <pre> Output:
+            1
+            2
+            3
+            4
+            5
+            6
+            7
+        </pre
+    >
+    <h2>
+      Q-3 "Write the promise function to print numbers from 1 to 7, in which 1
+      should be printed after 1 sec, 2 should be printed after 2 sec, 3 should
+      be printed after 3 sec, and so on. Numbers 1 2 3 4 5 6 7"
+    </h2>
+    <p>
+      The Promise object supports two properties: state and result. While a
+      Promise object is "pending" (working), the result is undefined. When a
+      Promise object is "fulfilled", the result is a value. When a Promise
+      object is "rejected", the result is an error object.
+    </p>
+    <pre>
+        function printNumbersWithDelay() {
+            let number = 1;
+          
+            function printNumber() {
+              return new Promise(resolve => {
+                setTimeout(() => {
+                  console.log(number);
+                  resolve();
+                }, number * 1000);
+              });
+            }
+          
+            function iterate() {
+              if (number <= 7) {
+                printNumber()
+                  .then(() => {
+                    number++;
+                    iterate();
+                  });
+              }
+            }
+          
+            iterate();
+          }
+          
+          printNumbersWithDelay();
+    </pre>
+
+    <h2>
+      Q-4 "Create a promise function accepting an argument, if yes is passed to
+      the function then it should go to resolved state and print Promise
+      Resolved, and if nothing is passed then it should go to reject the state
+      and catch the error and print Promise Rejected "
+    </h2>
+
+    <pre>
+        let condition ="yes";
+function promise(arg){
+ return new Promise((res,rej)=>{
+    if(arg==="yes"){
+        res('Promise Resolved')
+    }
+    else{
+        rej('Promise Rejected')
+    }
+})
+}
+
+promise(condition).then((good)=>console.log(good)).catch((bad)=>console.log(bad))
+    </pre>
+    <pre>
+Output: Promise Resolved
+    </pre>
+
+    <p>
+      In this code, the Promise function takes an arg argument. Inside the
+      function, we create a new promise using the Promise constructor. If the
+      arg is equal to "yes", the promise is resolved by calling the resolve
+      function with the value "Promise Resolved". Otherwise, if no argument is
+      passed or any other value is provided, the promise is rejected by calling
+      the reject function with a message "Promise Rejected".
+    </p>
+
+    <h2>Q-5 Create examples to explain callback function</h2>
+    <pre>
+        function callback(value){
+            return value*2.2
+        }
+        function multiply(kg,lbs){
+            console.log(`${kg}kg is equal to ${lbs}lbs`)
+        }
+        multiply(5,callback(5))
+    </pre>
+    <pre>
+        Output:
+        5kg is equal to 11lbs
+    </pre>
+    <p>
+      The callback function takes a single parameter value. It multiplies the
+      value by 2.2 and returns the result.callback(5) is executed first. It
+      passes 5 as an argument to the callback function, which returns 5 * 2.2,
+      resulting in 11. The value of 11 is then passed as the second argument to
+      the multiply function.
+    </p>
+
+    <h2>Q-6 Create examples to explain callback hell function</h2>
+    <pre>
+function op1(callback){
+            setTimeout(()=>{
+                console.log("Done1")
+                callback()
+            },1000)
+        }
+        
+        function op2(callback){
+            setTimeout(()=>{
+                console.log("Done2")
+                callback()
+            }, 1000)
+        }
+        function op3(callback){
+            setTimeout(()=>{
+                console.log("Done3")
+                callback()
+            }, 1000)
+        }
+        
+        op1(()=>{
+            op2(()=>{
+                op3(()=>{
+                    console.log("Hurray!!!")
+                })
+            })
+        })</pre
+    >
+    <pre>
+Output:
+            Done1
+            Done2
+            Done3
+            Hurray!!!
+        </pre
+    >
+    <p>
+      Three functions, op1, op2, and op3, are defined. Each of these functions
+      takes a callback function as a parameter. This code demonstrates the
+      concept of callback-hell based asynchronous programming in JavaScript,
+      where each operation depends on the completion of the previous one before
+      proceeding.
+    </p>
+
+    <h2>Q-7 Create examples to explain promises function</h2>
+    <pre>
+        let interview="pass"
+function jobDone(result){
+    return new Promise((res, rej)=>{
+        if(result="pass"){
+            res("You have cleared the interview")
+        }
+        else{
+            rej("Sorry better luck next time")
+        }
+    })
+}
+jobDone(interview).then((condition1)=>console.log(condition1)).catch((condition2)=>console.log(condition2))
+    </pre>
+    <pre>
+Output:
+    You have cleared the interview
+</pre
+    >
+    <p>
+      The variable interview is assigned the value "pass". This variable
+      represents the result of the interview. The function jobDone is defined,
+      which takes a result parameter. Inside the function, a new Promise is
+      created using the Promise constructor. This code demonstrates the basic
+      usage of Promises in JavaScript, allowing you to handle asynchronous
+      operations and handle success and failure cases with then and catch
+      respectively.
+    </p>
+    <h2>Q-8 Create examples to explain async await function</h2>
+    <pre>
+        function delay(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+      }
+      
+      async function performOperations() {
+        console.log('Operation 1');
+        await delay(1000);
+        console.log('Operation 2');
+        await delay(2000);
+        console.log('Operation 3');
+      }
+      
+      performOperations();</pre
+    >
+
+    <pre>
+Output:
+        Operation 1
+        Operation 2
+        Operation 3
+      </pre
+    >
+    <p>
+      The delay function returns a promise that resolves after the specified
+      delay in milliseconds. It uses setTimeout to achieve the delay and calls
+      the resolve function to resolve the promise.
+    </p>
+    <p>
+      he async/await syntax simplifies the handling of asynchronous operations
+      by making the code look more like synchronous code, enhancing its
+      readability and maintainability.
+    </p>
+    <h2>Q-9 Create examples to explain promise.all function</h2>
+
+    <pre>
+        function result(marks){
+            return new Promise((res, rej)=>{
+                if(marks>50){
+                    res('You have cleared the exam')
+                }
+                else{
+                    rej('You have not cleared the exam')
+                }
+            })
+        }
+            const output = new Promise((res,rej)=>{
+                if(true){
+                    res('Got job')
+                }
+                else{
+                    rej('Try next time')
+                }
+            })
+        
+        
+        Promise.all([result(60), output]).then((yes)=>console.log(yes)).catch((no)=>console.log(no));
+    </pre>
+
+    <p>
+      This code demonstrates how Promise.all can be used to handle multiple
+      promises concurrently and obtain their resolved values as an array.As a
+      result, when the Promise.all statement is executed, both promises are
+      resolved successfully. The then block is triggered, and the resolved
+      values of both promises are logged to the console:
+    </p>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
